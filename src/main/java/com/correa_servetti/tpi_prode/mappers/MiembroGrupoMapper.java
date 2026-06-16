@@ -1,6 +1,7 @@
 package com.correa_servetti.tpi_prode.mappers;
 
 import com.correa_servetti.tpi_prode.dto.MiembroGrupoRequestDTO;
+import com.correa_servetti.tpi_prode.dto.MiembroGrupoResponseDTO;
 import com.correa_servetti.tpi_prode.models.MiembroGrupo;
 
 public class MiembroGrupoMapper {
@@ -14,5 +15,16 @@ public class MiembroGrupoMapper {
         miembroGrupo.setEstado(dto.getEstadoInvitacion());
 
         return miembroGrupo;
+    }
+
+    public static MiembroGrupoResponseDTO toResponseDTO(MiembroGrupo miembroGrupo){
+        return new MiembroGrupoResponseDTO(
+                miembroGrupo.getId(),
+                miembroGrupo.getMiembro(),
+                miembroGrupo.getGrupo(),
+                miembroGrupo.getCodigoInvitacion(),
+                miembroGrupo.getRol(),
+                miembroGrupo.getEstado()
+        );
     }
 }

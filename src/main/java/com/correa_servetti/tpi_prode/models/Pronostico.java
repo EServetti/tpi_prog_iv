@@ -1,10 +1,14 @@
 package com.correa_servetti.tpi_prode.models;
 
-import com.correa_servetti.tpi_prode.models.enums.TENDENCIA_PARTIDO;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Getter
+@Setter
 public class Pronostico{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
