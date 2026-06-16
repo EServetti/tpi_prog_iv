@@ -14,17 +14,22 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioRequestDTO {
-    @NotBlank(message = "Ingrese el email")
+public class UsuarioResponseDTO {
+    @NotNull
+    Long id;
+
+    @NotBlank
     String email;
 
-    @NotBlank(message = "Ingrese la contraseña")
+    @NotBlank
     String password;
 
-    @NotBlank(message = "Ingrese el nombre de usuario")
+    @NotBlank
     String nombreUsuario;
 
-    ROL rol = ROL.USUARIO;
+    @NotBlank
+    ROL rol;
 
-    LocalDate fechaRegistro =  LocalDate.now();
+    @NotBlank
+    LocalDate fechaRegistro;
 }

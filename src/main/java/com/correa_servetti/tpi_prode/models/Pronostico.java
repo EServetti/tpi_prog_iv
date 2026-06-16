@@ -20,7 +20,7 @@ public class Pronostico{
     private LocalDateTime fechaPronostico = LocalDateTime.now();
 
     @Column(nullable = false)
-    private Integer puntosObtenidos = 0;
+    private Integer puntosObtenidos;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
