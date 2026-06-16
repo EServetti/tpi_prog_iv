@@ -21,16 +21,16 @@ public class Partido {
     LocalDateTime fechaInicio;
 
     @Column(nullable = false)
-    int golesLocal = 0;
+    int golesLocal;
 
     @Column(nullable = false)
-    int golesVisitante = 0;
+    int golesVisitante;
 
     @Column(nullable = false)
-    ESTADO_PARTIDO estado = ESTADO_PARTIDO.POR_JUGARSE;
+    ESTADO_PARTIDO estado;
 
     @Column(nullable = false)
-    TENDENCIA_PARTIDO tendencia =  TENDENCIA_PARTIDO.EMPATE;
+    TENDENCIA_PARTIDO tendencia;
 
     @ManyToOne
     @JoinColumn(name = "fecha_id")
