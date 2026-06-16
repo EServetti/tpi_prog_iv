@@ -11,19 +11,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
-public class MiembroGrupoRequestDTO {
-    @NotNull(message = "Ingrese el usuario")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class MiembroGrupoResponseDTO {
+    @NotNull
+    Long id;
+
+    @NotNull
     Usuario usuario;
 
-    @NotNull(message = "Ingrese el grupo")
+    @NotNull
     Grupo grupo;
 
-    @NotBlank(message = "Ingrese el codigo de invitacion")
+    @NotBlank
     String codigoInvitacion;
 
-    ROL_MIEMBRO rol = ROL_MIEMBRO.USUARIO;
+    @NotBlank
+    ROL_MIEMBRO rol;
 
-    ESTADO_INVITACION estadoInvitacion = ESTADO_INVITACION.PENDIENTE;
+    @NotBlank
+    ESTADO_INVITACION estado;
 }
