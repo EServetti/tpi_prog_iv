@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class MiembroGrupoDTO {
+public class MiembroGrupoRequestDTO {
     @NotNull(message = "Ingrese el usuario")
     Usuario usuario;
 

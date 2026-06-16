@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PartidoDTO {
+public class PartidoRequestDTO {
     @NotNull(message = "Ingrese la fecha de inicio")
     LocalDate fechaInicio;
 

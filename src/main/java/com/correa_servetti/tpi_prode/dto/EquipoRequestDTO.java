@@ -8,7 +8,8 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class EquipoDTO {
+public class EquipoRequestDTO {
     @NotBlank(message = "Debes ingresar el nombre del equipo.")
     private String nombre;
 }
+
