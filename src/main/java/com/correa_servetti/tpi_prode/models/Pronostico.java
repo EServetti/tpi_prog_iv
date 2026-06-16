@@ -17,10 +17,10 @@ public class Pronostico{
     private Integer golesVisitante;
 
     @Column(nullable = false)
-    private LocalDateTime fechaPronostico;
+    private LocalDateTime fechaPronostico = LocalDateTime.now();
 
     @Column(nullable = false)
-    private Integer puntosObtenidos;
+    private Integer puntosObtenidos = 0;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -29,39 +29,4 @@ public class Pronostico{
     @ManyToOne
     @JoinColumn(name = "partido_id", nullable = false)
     private Partido partido;
-
-    public boolean resultadoExacto(){
-        return golesLocal.equals(partido.getGolesLocal())
-                && golesVisitante.equals(partido.getGolesVisitante());
-    }
-
-    public boolean acierta(){
-        return obtenerTendenciaPronosticada() == partido.getTendencia();
-    }
-
-    public void calcularPts(){
-        if (resultadoExacto()){
-            puntosObtenidos = 3;
-        } else if (acierta()) {
-            puntosObtenidos = 1;
-        } else {
-            puntosObtenidos = 0;
-        }
-    }
-
-    public  void actualizarResultado(){
-        calcularPts();
-    }
-
-    private TENDENCIA_PARTIDO obtenerTendenciaPronosticada(){
-        if (golesLocal > golesVisitante){
-            return TENDENCIA_PARTIDO.LOCAL;
-        }
-
-        if (golesLocal < golesVisitante){
-            return TENDENCIA_PARTIDO.VISITANTE;
-        }
-
-        return TENDENCIA_PARTIDO.EMPATE;
-    }
 }
