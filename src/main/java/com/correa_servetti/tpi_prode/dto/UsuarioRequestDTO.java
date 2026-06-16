@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioDTO {
+public class UsuarioRequestDTO {
     @NotNull(message = "Ingrese el email")
     @NotBlank(message = "Ingrese el email")
     String email;

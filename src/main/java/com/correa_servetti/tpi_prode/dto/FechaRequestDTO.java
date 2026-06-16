@@ -1,6 +1,6 @@
 package com.correa_servetti.tpi_prode.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import com.correa_servetti.tpi_prode.models.enums.ESTADO_FECHA;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,10 +8,6 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class GrupoDTO {
-    @NotBlank
-    String nombre;
-
-    @NotBlank
-    String codigoInvitacion;
+public class FechaRequestDTO {
+    ESTADO_FECHA estado = ESTADO_FECHA.PROGRAMADA;
 }

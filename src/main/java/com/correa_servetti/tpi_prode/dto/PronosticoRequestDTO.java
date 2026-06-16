@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PronosticoDTO {
+public class PronosticoRequestDTO {
     @NotNull(message = "Ingrese los goles del local")
     Integer golesLocal;
 
