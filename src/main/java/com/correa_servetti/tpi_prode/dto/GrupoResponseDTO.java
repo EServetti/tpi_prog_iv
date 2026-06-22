@@ -13,11 +13,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GrupoResponseDTO {
     @NotNull
-    Long id;
+    private Long id;
 
     @NotBlank
-    String nombre;
+    private String nombre;
 
     @NotBlank
-    String codigoInvitacion;
+    private String icono;
+
+    @NotBlank
+    private String codigoInvitacion;
 }
