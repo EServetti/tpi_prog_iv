@@ -10,8 +10,11 @@ import lombok.Setter;
 @AllArgsConstructor @NoArgsConstructor
 public class GrupoRequestDTO {
     @NotBlank
-    String nombre;
+    private String nombre;
 
     @NotBlank
-    String codigoInvitacion;
+    private String icono;
+
+    @NotBlank
+    private String codigoInvitacion;
 }

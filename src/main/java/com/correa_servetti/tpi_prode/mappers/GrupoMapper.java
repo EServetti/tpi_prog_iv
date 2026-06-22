@@ -9,6 +9,7 @@ public class GrupoMapper {
         Grupo grupo = new Grupo();
 
         grupo.setNombre(dto.getNombre());
+        grupo.setIcono(dto.getIcono());
         grupo.setCodigoInvitacion(dto.getCodigoInvitacion());
 
         return grupo;
@@ -18,6 +19,7 @@ public class GrupoMapper {
         return new GrupoResponseDTO(
                 grupo.getId(),
                 grupo.getNombre(),
+                grupo.getIcono(),
                 grupo.getCodigoInvitacion()
         );
     }

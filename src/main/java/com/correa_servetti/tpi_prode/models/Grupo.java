@@ -16,6 +16,9 @@ public class Grupo {
     @Column(nullable = false)
     private String nombre;
 
+    @Column(nullable = false)
+    private String icono;
+
     @Column(nullable = false, unique = true)
     private String codigoInvitacion;
 }
