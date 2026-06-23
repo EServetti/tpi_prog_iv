@@ -13,26 +13,34 @@ import java.util.List;
 
 @Tag(
         name = "Partidos",
-        description = "Gestion de partidos"
+        description = "Gestión de partidos"
 )
 @RestController
 @RequestMapping("/partidos")
 @RequiredArgsConstructor
 public class PartidoController {
+
     private final PartidoService partidoService;
 
-    @Operation(summary = "Crear partido")
+    @Operation(
+            summary = "Crear partido",
+            description = "Crea un partido indicando equipos, fecha y horario."
+    )
     @PostMapping
     public Partido crear(
-            @RequestBody
-            CrearPartidoRequestDTO dto){
-        return partidoService.crearPartido(dto.getEquipoLocalId(),
+            @RequestBody CrearPartidoRequestDTO dto){
+        return partidoService.crearPartido(
+                dto.getEquipoLocalId(),
                 dto.getEquipoVisitanteId(),
                 dto.getFechaId(),
-                dto.getFechaInicio());
+                dto.getFechaInicio()
+        );
     }
 
-    @Operation(summary = "Actualizar partido")
+    @Operation(
+            summary = "Actualizar partido",
+            description = "Permite actualizar fecha, estado y resultado de un partido."
+    )
     @PutMapping("/{id}")
     public Partido actualizar(
             @PathVariable Long id,
@@ -47,7 +55,10 @@ public class PartidoController {
         );
     }
 
-    @Operation(summary = "Listar partidos")
+    @Operation(
+            summary = "Listar partidos",
+            description = "Obtiene todos los partidos registrados."
+    )
     @GetMapping
     public List<Partido> listar(){
         return partidoService.listar();

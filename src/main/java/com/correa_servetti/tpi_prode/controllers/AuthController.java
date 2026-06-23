@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthService authService;
 
-    @Operation(summary = "Registrar usuario")
+    @Operation(summary = "Registrar usuario",
+    description = "Crea un usuario y devuelve un token JWT")
     @PostMapping("/register")
     public ResponseEntity<LoginResponseDTO> register(
             @RequestBody RegisterRequestDTO request){
@@ -32,7 +33,8 @@ public class AuthController {
         );
     }
 
-    @Operation(summary = "Iniciar sesion")
+    @Operation(summary = "Iniciar sesion",
+    description = "Autentica al usuario mediante email y contraseña devolviendo un token JWT")
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(
             @RequestBody LoginRequestDTO request){
@@ -42,7 +44,8 @@ public class AuthController {
         );
     }
 
-    @Operation(summary = "Obtener datos del usuario autenticado")
+    @Operation(summary = "Obtener datos del usuario autenticado",
+    description = "Retorna los datos del usuario asociado al token JWT enviado.")
     @GetMapping("/me")
     public ResponseEntity<UsuarioResponseDTO> me(
             Authentication authentication){
