@@ -20,6 +20,7 @@ public class PronosticoController {
         return pronosticoService.crearPronostico(
                 dto.getUsuarioId(),
                 dto.getPartidoId(),
+                dto.getGrupoId(),
                 dto.getGolesLocal(),
                 dto.getGolesVisitante()
         );

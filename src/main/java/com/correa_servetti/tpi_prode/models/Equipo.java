@@ -13,4 +13,7 @@ public class Equipo {
 
     @Column(unique = true, nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
+    private String escudo;
 }

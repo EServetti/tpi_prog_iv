@@ -1,5 +1,6 @@
 package com.correa_servetti.tpi_prode.service;
 
+import com.correa_servetti.tpi_prode.dto.GrupoConParticipantesDTO;
 import com.correa_servetti.tpi_prode.dto.IngresarGrupoRequestDTO;
 import com.correa_servetti.tpi_prode.dto.MiembroGrupoRequestDTO;
 import com.correa_servetti.tpi_prode.dto.MiembroGrupoResponseDTO;
@@ -47,11 +48,14 @@ public class MiembroGrupoService {
             IngresarGrupoRequestDTO dto){
         Usuario usuario = usuarioService.buscarPorId(dto.getUsuarioId());
 
-        Grupo grupo = grupoService.buscarPorId(dto.getGrupoId());
+        Grupo grupo = grupoService.buscarPorCodigoInvitacion(
+                dto.getCodigoInvitacion());
 
-        if (!grupo.getCodigoInvitacion().equals(dto.getCodigoInvitacion())){
-            throw new RuntimeException("Codigo de invitacion incorrecto");
+        if (miembroGrupoRepository.findByMiembroIdAndGrupoId(
+                usuario.getId(), grupo.getId()).isPresent()) {
+            throw new RuntimeException("El usuario ya pertenece al grupo");
         }
+
         MiembroGrupo miembro = new MiembroGrupo();
 
         miembro.setMiembro(usuario);
@@ -79,9 +83,25 @@ public class MiembroGrupoService {
         return MiembroGrupoMapper.toResponseDTO(miembro);
     }
 
-    public List<MiembroGrupo> obtenerPorUsuario(
+    public List<GrupoConParticipantesDTO> obtenerPorUsuario(
             Long usuarioId){
-        return miembroGrupoRepository.findByMiembroId(usuarioId);
+        return miembroGrupoRepository.findByMiembroIdAndEstado(
+                        usuarioId,
+                        ESTADO_INVITACION.ACEPTADA
+                )
+                .stream()
+                .map(m -> new GrupoConParticipantesDTO(
+                        m.getGrupo().getId(),
+                        m.getGrupo().getNombre(),
+                        m.getGrupo().getIcono(),
+                        m.getGrupo().getCodigoInvitacion(),
+                        m.getRol(),
+                        miembroGrupoRepository.countByGrupoIdAndEstado(
+                                m.getGrupo().getId(),
+                                ESTADO_INVITACION.ACEPTADA
+                        )
+                ))
+                .toList();
     }
 
     public void eliminar(Long id){

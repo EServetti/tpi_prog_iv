@@ -11,4 +11,7 @@ import lombok.Setter;
 public class EquipoRequestDTO {
     @NotBlank(message = "Debes ingresar el nombre del equipo.")
     private String nombre;
+
+    @NotBlank(message = "Debes ingresar el escudo del equipo.")
+    private String escudo;
 }

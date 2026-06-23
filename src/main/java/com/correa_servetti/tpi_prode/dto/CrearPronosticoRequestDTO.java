@@ -8,6 +8,7 @@ import lombok.Setter;
 public class CrearPronosticoRequestDTO {
     private Long usuarioId;
     private Long partidoId;
+    private Long grupoId;
     private Integer golesLocal;
     private Integer golesVisitante;
 }

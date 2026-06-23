@@ -12,6 +12,7 @@ public class Fecha {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ESTADO_FECHA estadoFecha;
 }

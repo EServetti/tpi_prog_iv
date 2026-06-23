@@ -17,4 +17,7 @@ public class EquipoResponseDTO {
 
     @NotBlank
     String nombre;
+
+    @NotBlank
+    String escudo;
 }

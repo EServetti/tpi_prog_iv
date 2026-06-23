@@ -25,9 +25,11 @@ public class Partido {
     @Column(nullable = false)
     int golesVisitante;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     ESTADO_PARTIDO estado;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     TENDENCIA_PARTIDO tendencia;
 
