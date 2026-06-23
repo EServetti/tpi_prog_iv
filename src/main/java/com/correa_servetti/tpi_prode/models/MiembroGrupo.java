@@ -32,4 +32,10 @@ public class MiembroGrupo {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ESTADO_INVITACION estado;
+
+    @Transient
+    private long puntos;
+
+    @Transient
+    private long resultadosExactos;
 }

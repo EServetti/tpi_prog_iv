@@ -65,7 +65,8 @@ public class PartidoService {
             Integer fechaId,
             java.time.LocalDateTime fechaInicio,
             Integer golesLocal,
-            Integer golesVisitante){
+            Integer golesVisitante,
+            ESTADO_PARTIDO estado){
         Partido partido = buscarPorId(partidoId);
 
         if (fechaId != null){
@@ -84,11 +85,15 @@ public class PartidoService {
             partido.setGolesVisitante(golesVisitante);
         }
 
-        if (partido.getGolesLocal() > partido.getGolesLocal()){
+        if (estado != null){
+            partido.setEstado(estado);
+        }
+
+        if (partido.getGolesLocal() > partido.getGolesVisitante()){
             partido.setTendencia(TENDENCIA_PARTIDO.LOCAL);
         } else if (partido.getGolesLocal()
         < partido.getGolesVisitante()){
-            partido.setTendencia(TENDENCIA_PARTIDO.LOCAL);
+            partido.setTendencia(TENDENCIA_PARTIDO.VISITANTE);
         } else {
             partido.setTendencia(TENDENCIA_PARTIDO.EMPATE);
         }

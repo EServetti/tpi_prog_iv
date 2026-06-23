@@ -34,7 +34,8 @@ public class PartidoController {
                 dto.getFechaId(),
                 dto.getFechaInicio(),
                 dto.getGolesLocal(),
-                dto.getGolesVisitante()
+                dto.getGolesVisitante(),
+                dto.getEstado()
         );
     }
     @GetMapping

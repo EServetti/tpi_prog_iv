@@ -3,6 +3,7 @@ package com.correa_servetti.tpi_prode.service;
 import com.correa_servetti.tpi_prode.dto.ActualizarGrupoRequestDTO;
 import com.correa_servetti.tpi_prode.dto.GrupoRequestDTO;
 import com.correa_servetti.tpi_prode.dto.GrupoResponseDTO;
+import com.correa_servetti.tpi_prode.dto.ParticipanteGrupoDTO;
 import com.correa_servetti.tpi_prode.mappers.GrupoMapper;
 import com.correa_servetti.tpi_prode.models.Grupo;
 import com.correa_servetti.tpi_prode.models.MiembroGrupo;
@@ -11,6 +12,7 @@ import com.correa_servetti.tpi_prode.models.enums.ESTADO_INVITACION;
 import com.correa_servetti.tpi_prode.models.enums.ROL_MIEMBRO;
 import com.correa_servetti.tpi_prode.repository.GrupoRepository;
 import com.correa_servetti.tpi_prode.repository.MiembroGrupoRepository;
+import com.correa_servetti.tpi_prode.repository.PronosticoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +26,7 @@ import java.util.List;
 public class GrupoService {
     private final GrupoRepository grupoRepository;
     private final MiembroGrupoRepository miembroGrupoRepository;
+    private final PronosticoRepository pronosticoRepository;
 
     @Transactional
     public GrupoResponseDTO crear(GrupoRequestDTO dto){
@@ -63,10 +66,19 @@ public class GrupoService {
     }
 
     public List<MiembroGrupo> obtenerMiembros(Long grupoId){
-        return miembroGrupoRepository.findByGrupoIdAndEstado(
+        List<MiembroGrupo> miembros = miembroGrupoRepository.findByGrupoIdAndEstado(
                 grupoId,
                 ESTADO_INVITACION.ACEPTADA
         );
+
+        for (MiembroGrupo m : miembros) {
+            m.setPuntos(pronosticoRepository.sumPuntosByUsuarioAndGrupo(
+                    m.getMiembro().getId(), grupoId));
+            m.setResultadosExactos(pronosticoRepository.countResultadosExactosByUsuarioAndGrupo(
+                    m.getMiembro().getId(), grupoId));
+        }
+
+        return miembros;
     }
 
     public List<Grupo> listar(){
