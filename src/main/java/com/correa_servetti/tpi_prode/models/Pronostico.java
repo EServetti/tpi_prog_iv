@@ -33,4 +33,8 @@ public class Pronostico{
     @ManyToOne
     @JoinColumn(name = "partido_id", nullable = false)
     private Partido partido;
+
+    @ManyToOne
+    @JoinColumn(name = "grupo_id", nullable = false)
+    private Grupo grupo;
 }

@@ -21,6 +21,13 @@ public class GrupoController {
         return grupoService.crear(dto);
     }
 
+    @PutMapping("/{id}")
+    public GrupoResponseDTO actualizar(
+            @PathVariable Long id,
+            @RequestBody ActualizarGrupoRequestDTO dto){
+        return grupoService.actualizar(id, dto);
+    }
+
     @PostMapping("/ingresar")
     public MiembroGrupoResponseDTO ingresar(@RequestBody IngresarGrupoRequestDTO dto){
         return miembroGrupoService.ingresarAGrupo(dto);
@@ -32,8 +39,14 @@ public class GrupoController {
     }
 
     @GetMapping("/usuario/{idUsuario}")
-    public List<MiembroGrupo> gruposDeUsuario(
+    public List<GrupoConParticipantesDTO> gruposDeUsuario(
             @PathVariable Long idUsuario){
         return miembroGrupoService.obtenerPorUsuario(idUsuario);
+    }
+
+    @GetMapping("/{id}/miembros")
+    public List<MiembroGrupo> miembrosDeGrupo(
+            @PathVariable Long id){
+        return grupoService.obtenerMiembros(id);
     }
 }

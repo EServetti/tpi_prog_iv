@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class IngresarGrupoRequestDTO {
-    private Long usuarioId;
+public class ActualizarGrupoRequestDTO {
+    private String nombre;
+    private String icono;
     private String codigoInvitacion;
 }
