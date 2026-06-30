@@ -3,8 +3,10 @@ package com.correa_servetti.tpi_prode.service;
 import com.correa_servetti.tpi_prode.dto.ActualizarGrupoRequestDTO;
 import com.correa_servetti.tpi_prode.dto.GrupoRequestDTO;
 import com.correa_servetti.tpi_prode.dto.GrupoResponseDTO;
+import com.correa_servetti.tpi_prode.dto.MiembroGrupoResponseDTO;
 import com.correa_servetti.tpi_prode.dto.ParticipanteGrupoDTO;
 import com.correa_servetti.tpi_prode.mappers.GrupoMapper;
+import com.correa_servetti.tpi_prode.mappers.MiembroGrupoMapper;
 import com.correa_servetti.tpi_prode.models.Grupo;
 import com.correa_servetti.tpi_prode.models.MiembroGrupo;
 import com.correa_servetti.tpi_prode.models.Usuario;
@@ -65,7 +67,7 @@ public class GrupoService {
         return GrupoMapper.toResponseDTO(grupo);
     }
 
-    public List<MiembroGrupo> obtenerMiembros(Long grupoId){
+    public List<MiembroGrupoResponseDTO> obtenerMiembros(Long grupoId){
         List<MiembroGrupo> miembros = miembroGrupoRepository.findByGrupoIdAndEstado(
                 grupoId,
                 ESTADO_INVITACION.ACEPTADA
@@ -76,9 +78,13 @@ public class GrupoService {
                     m.getMiembro().getId(), grupoId));
             m.setResultadosExactos(pronosticoRepository.countResultadosExactosByUsuarioAndGrupo(
                     m.getMiembro().getId(), grupoId));
+            m.setFechaPronosticos(pronosticoRepository.findFechaPronosticosByUsuarioAndGrupo(
+                    m.getMiembro().getId(), grupoId));
         }
 
-        return miembros;
+        return miembros.stream()
+                .map(MiembroGrupoMapper::toResponseDTO)
+                .toList();
     }
 
     public List<Grupo> listar(){

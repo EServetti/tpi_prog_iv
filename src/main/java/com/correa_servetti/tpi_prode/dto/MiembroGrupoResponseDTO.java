@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -33,4 +35,10 @@ public class MiembroGrupoResponseDTO {
 
     @NotBlank
     ESTADO_INVITACION estado;
+
+    long puntos;
+
+    long resultadosExactos;
+
+    List<FechaPronosticoDTO> fechaPronosticos;
 }
