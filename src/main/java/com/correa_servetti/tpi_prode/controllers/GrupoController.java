@@ -1,7 +1,6 @@
 package com.correa_servetti.tpi_prode.controllers;
 
 import com.correa_servetti.tpi_prode.dto.*;
-import com.correa_servetti.tpi_prode.models.MiembroGrupo;
 import com.correa_servetti.tpi_prode.service.GrupoService;
 import com.correa_servetti.tpi_prode.service.MiembroGrupoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,7 +52,7 @@ public class GrupoController {
     @Operation(summary = "Listar miembros de un grupo",
     description = "Obtiene todos los miembros asociados a un grupo")
     @GetMapping("/{id}/miembros")
-    public List<MiembroGrupo> miembrosDeGrupo(
+    public List<MiembroGrupoResponseDTO> miembrosDeGrupo(
             @PathVariable Long id){
         return grupoService.obtenerMiembros(id);
     }
